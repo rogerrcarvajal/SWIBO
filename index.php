@@ -12,7 +12,7 @@ if (isset($_SESSION['usuario_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWIBO - Login</title>
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="/swibo/public/css/style.css">
 </head>
 <body>
     <div class="login-container">
@@ -24,7 +24,7 @@ if (isset($_SESSION['usuario_id'])) {
                 <p class="error-message">Usuario o contraseña incorrectos.</p>
             <?php endif; ?>
 
-            <form action="api/auth.php" method="POST">
+            <form action="/swibo/api/auth.php" method="POST">
                 <div class="input-group">
                     <label for="username">Usuario</label>
                     <input type="text" id="username" name="username" required>
