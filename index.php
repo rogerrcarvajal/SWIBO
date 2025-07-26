@@ -11,23 +11,23 @@ if (isset($_SESSION['usuario_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SWIBO</title>
+    <title>SWIBO - Login</title>
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
             <img src="public/img/logo.png" alt="Logo Bix Oil" class="logo">
-            <h2>Control de Inventario</h2>
+            <h1>Sistema Web para el<br>Control de Inventario<br></h1>
             
             <?php if (isset($_GET['error'])): ?>
-                <p class="error-message">Correo o contraseña incorrectos.</p>
+                <p class="error-message">Usuario o contraseña incorrectos.</p>
             <?php endif; ?>
 
             <form action="api/auth.php" method="POST">
                 <div class="input-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Contraseña</label>

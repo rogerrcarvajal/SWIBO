@@ -9,7 +9,7 @@ require_once '../src/db.php';
 
 // Verificar que los datos lleguen por método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
+    $username = $_POST['username'] ?? '';
     $password_ingresada = $_POST['password'] ?? '';
 
     if (empty($email) || empty($password_ingresada)) {
@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        // Preparar la consulta para buscar al usuario por email
-        $stmt = $pdo->prepare("SELECT id, nombre, email, password, rol FROM usuarios WHERE email = ?");
-        $stmt->execute([$email]);
+        // Preparar la consulta para buscar al usuario por username
+        $stmt = $pdo->prepare("SELECT id, nombre, username, password, rol FROM usuarios WHERE username = ?");
+        $stmt->execute([$username]);
         $usuario = $stmt->fetch();
 
         // Verificar si se encontró un usuario y si la contraseña es correcta
