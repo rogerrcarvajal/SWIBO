@@ -1,10 +1,12 @@
 <?php
 session_start();
+
 // Si ya hay una sesión activa, redirigir al dashboard
-if (isset($_SESSION['usuario_id'])) {
-    header('Location: pages/dashboard.php');
+if (isset($_SESSION['usuario'])) {
+    header("Location: /pages/dashboard.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

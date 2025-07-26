@@ -2,7 +2,7 @@
 // api/auth.php
 
 session_start();
-require_once '../src/db.php'; // Usa tu archivo db.php
+require_once __DIR__ . '/../src/db.php'; // Usa tu archivo db.php
 
 // Verificar que los datos lleguen por método POST
 $mensaje = "";
@@ -19,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificación segura y funcional
     if ($usuario && password_verify($password, $usuario['password'])) {
         // Guardamos todo el array de usuario en la sesión
-        $_SESSION['usuario'] = $usuario;
+        $_SESSION['username'] = $usuario;
         
-        header("Location: /swibo/pages/dashboard.php");
+        header("Location: /pages/dashboard.php");
         exit();
     } else {
         $mensaje = "⚠️ Usuario o contraseña incorrectos.";

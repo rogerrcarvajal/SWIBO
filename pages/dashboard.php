@@ -2,18 +2,19 @@
 session_start();
 
 // --- Protección de la Página ---
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: /swibo/index.php');
+if (!isset($_SESSION['usuario'])) {
+    header("Location: /../public/index.php");
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - SWIBO</title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <title>SWIBO - Dashboard</title>
+    <link rel="stylesheet" href="/swibo/public/css/style.css">
 </head>
 <body>
     <div class="dashboard-container">
