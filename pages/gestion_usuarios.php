@@ -88,13 +88,20 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
             padding: 12px;
             border-bottom: 1px solid #ddd;
         }
-        .user-table th { background-color: #f2f2f2; }
-        .user-table tr:hover { background-color: #f9f9f9; }
+        .user-table th { background-color: rgba(158, 0, 0, 0.5); }
+        .user-table tr:hover { background-color: rgba(255, 0, 0, 0.274); }
         .actions a {
             margin-right: 10px;
-            text-decoration: none;
-            color: #007bff;
+            width: 100%;
+            padding: 8px;
+            border: none;
+            background-color: #d10000;
+            color: white;
+            font-size: 18px;
             font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         .actions a.delete { color: #dc3545; }
         
