@@ -70,17 +70,16 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
             margin-top: 20px;
         }
         .form-section, .list-section {
-            background-color: rgba(255, 0, 0, 0.274);
-            backdrop-filter:blur(10px);
+            background-color: #00224480;
             border:2px solid rgba(255,255,255,0.18);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .form-section { flex: 1; min-width: 350px; }
-        .list-section { flex: 1.5; min-width: 450px; }
+        .list-section { flex: 1.5; min-width: 450px; color: rgba(255, 255, 255, 0.712); }
 
-        h2 { color: #002244; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: rgba(255, 255, 255, 0.712); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0; }
         
         .user-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         .user-table th, .user-table td {
@@ -96,7 +95,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
             padding: 8px;
             border: none;
             background-color: #d10000;
-            color: white;
+            color: rgba(255, 255, 255, 0.712);
             font-size: 18px;
             font-weight: bold;
             border-radius: 5px;
@@ -158,7 +157,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
 
             <div class="list-section">
                 <h2>Usuarios Registrados</h2>
-                <table class="user-table">
+                <table class="user-table" color: rgba(255, 255, 255, 0.712);>
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -176,7 +175,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
                             <td><?php echo htmlspecialchars($usuario['email']); ?></td>
                             <td><?php echo htmlspecialchars($usuario['rol']); ?></td>
                             <td class="actions">
-                                <a href="#">Editar</a>
+                                <a href="#">Gestionar</a>
                                 <?php if ($_SESSION['usuario_id'] != $usuario['id']): // No permitir que un admin se elimine a sí mismo ?>
                                 <a href="#" class="delete" onclick="return confirm('¿Está seguro de que desea eliminar a este usuario?');">Eliminar</a>
                                 <?php endif; ?>
