@@ -125,20 +125,17 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
 
                 <form action="gestion_usuarios.php" method="POST">
                     <div class="input-group">
-                        <label for="nombre_completo">Nombre Completo</label>
-                        <input type="text" id="nombre_completo" name="nombre_completo" required>
+                        <input type="text" id="nombre_completo" name="nombre_completo" placeholder="Nombre Completo" required>
                     </div>
                     <div class="input-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
                     </div>
                     <div class="input-group">
-                        <label for="username">Nombre de Usuario</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" placeholder="Usuario" required>
                     </div>
                     <div class="input-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" name="password" placeholder="Contraseña" id="password" required>
+                        <input type="checkbox" id="show-password" onclick="password.type = this.checked ? 'text' : 'password'">
                     </div>
                     <div class="input-group">
                         <label for="rol">Rol del Usuario</label>
