@@ -77,9 +77,9 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .form-section { flex: 1; min-width: 350px; }
-        .list-section { flex: 1.5; min-width: 450px; color: rgba(255, 255, 255, 0.712); }
+        .list-section { flex: 1.5; min-width: 450px; color: rgba(255, 255, 255, 0.712);}
 
-        h2 { color: rgba(255, 255, 255, 0.712); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0; }
+        h2 { color: rgba(255, 255, 255, 0.712); border-bottom: 2px; padding-bottom: 10px; margin-top: 0;}
         
         .user-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         .user-table th, .user-table td {
@@ -117,7 +117,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
     <main class="main-content">
         <header class="main-header">
             <h1>Gestión de Usuarios del Sistema</h1>
-            <p>Crear nuevas cuentas de usuario y administrar las existentes.</p>
+            <p>Administrar, editar y eliminar cuentas y roles de usuarios del sistema.</p>
         </header>
 
         <div class="gestion-container">
