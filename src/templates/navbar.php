@@ -30,8 +30,8 @@ $rol_usuario = $_SESSION['usuario_rol'] ?? 'Consulta';
         <li class="has-submenu">
             <a href="#">Inventario</a>
             <ul class="submenu">
-                <li><a href="#">Gestión de Categorías</a></li>
-                <li><a href="#">Gestión de Productos</a></li>
+                <li><a href="/swibo/pages/gestion_categorias.php">Gestionar Categorías</a></li>
+                <li><a href="/swibo/pages/gestion_productos.php">Gestionar Productos</a></li>
             </ul>
         </li>
         <li class="has-submenu">

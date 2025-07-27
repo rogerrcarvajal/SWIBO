@@ -103,6 +103,8 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
             transition: background-color 0.3s;
         }
         .actions a.delete { color: #dc3545; }
+
+        .btn-secondary { background-color: #d10000; color: rgba(255, 255, 255, 0.712); padding: 11px 20px; text-decoration: none; border-radius: 5px; }
         
         .alert-message { padding: 10px; border-radius: 5px; margin-bottom: 15px; color: #fff; }
         .alert-message.success { background-color: #28a745; }
@@ -152,6 +154,9 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
                         </select>
                     </div>
                     <button type="submit" name="registrar_usuario" class="btn-login">Registrar Usuario</button>
+
+                    <br><br>
+                    <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>
 
@@ -175,7 +180,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
                             <td><?php echo htmlspecialchars($usuario['email']); ?></td>
                             <td><?php echo htmlspecialchars($usuario['rol']); ?></td>
                             <td class="actions">
-                                <a href="#">Gestionar</a>
+                                <a href="editar_usuario.php?id=<?php echo $usuario['id']; ?>">Gestionar</a>
                                 <?php if ($_SESSION['usuario_id'] != $usuario['id']): // No permitir que un admin se elimine a sí mismo ?>
                                 <a href="#" class="delete" onclick="return confirm('¿Está seguro de que desea eliminar a este usuario?');">Eliminar</a>
                                 <?php endif; ?>
