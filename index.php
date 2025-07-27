@@ -1,36 +1,49 @@
 <?php
 session_start();
-if (isset($_SESSION['usuario'])) {
-    header("Location: /swibo/pages/dashboard.php");
+
+// Si ya hay una sesión, redirigir al dashboard.
+if (isset($_SESSION['usuario_id'])) {
+    header('Location: pages/dashboard.php');
     exit();
 }
-// Incluir configuración y conexión a la base de datos
-require_once __DIR__ . '/src/db.php';
 
-$mensaje = "";
+require_once 'src/db.php';
+$mensaje_error = "";
 
+// Procesar el formulario cuando se envía.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $password_ingresada = $_POST['password'] ?? '';
 
-    $sql = "SELECT * FROM usuarios WHERE username = :username";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([':username' => $username]);
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Verificación segura y funcional
-    if ($usuario && password_verify($password, $usuario['password'])) {
-        // Guardamos todo el array de usuario en la sesión
-        $_SESSION['usuario'] = $usuario;
-        
-        header("Location: /swibo/pages/dashboard.php");
-        exit();
+    if (empty($username) || empty($password_ingresada)) {
+        $mensaje_error = "⚠️ Por favor, ingrese usuario y contraseña.";
     } else {
-        $mensaje = "⚠️ Usuario o contraseña incorrectos.";
+        try {
+            // Preparar y ejecutar la consulta.
+            $sql = "SELECT id, nombre, password, rol FROM usuarios WHERE username = :username";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([':username' => $username]);
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Verificar si se encontró el usuario y la contraseña coincide.
+            if ($usuario && password_verify($password_ingresada, $usuario['password'])) {
+                // Éxito: Guardar en sesión y redirigir.
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['usuario_nombre'] = $usuario['nombre'];
+                $_SESSION['usuario_rol'] = $usuario['rol'];
+                header("Location: pages/dashboard.php");
+                exit();
+            } else {
+                // Fracaso: Establecer mensaje de error.
+                $mensaje_error = "⚠️ Usuario o contraseña incorrectos.";
+            }
+        } catch (PDOException $e) {
+            $mensaje_error = "Error de conexión. Intente más tarde.";
+            // Para depurar, podrías loguear el error: error_log($e->getMessage());
+        }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,12 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="index.php" method="POST">
                 <div class="input-group">
-                    <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" placeholder="Usuario" required>
                 </div>
                 <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" name="password" placeholder="Contraseña" id="password" required>
+                    <input type="checkbox" id="show-password" onclick="password.type = this.checked ? 'text' : 'password'">
                 </div>
                 <button type="submit" class="btn-login">Ingresar</button>
             </form>

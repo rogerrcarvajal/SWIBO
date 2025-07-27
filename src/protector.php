@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Verificar si la variable de sesión del ID de usuario NO está establecida.
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['usuario_id'])) {
     // Si no ha iniciado sesión, destruye cualquier dato de sesión residual.
     session_destroy();
     
@@ -16,4 +16,4 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: /swibo/index.php"); // Asegúrate que '/swibo/' es el nombre de tu carpeta de proyecto.
     exit(); // Detiene la ejecución del script de la página actual.
 }
-?>s
+?>

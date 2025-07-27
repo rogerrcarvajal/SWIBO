@@ -22,7 +22,7 @@ require_once __DIR__ . '/../src/protector.php';
             </header>
             
             <div class="dashboard-widgets">
-                </div>
+            </div>
         </main>
     </div>
 </body>

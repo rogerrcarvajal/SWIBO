@@ -26,7 +26,7 @@ $rol_usuario = $_SESSION['usuario_rol'] ?? 'Consulta';
     <div class="nav-logo">
         <img src="/swibo/public/img/logo.png" alt="Logo Bix Oil"> </div>
     <ul class="nav-menu">
-        <li class="active"><a href="/swibo/pages/dashboard.php">Inicio</a></li>
+        <li class="active"><a href="dashboard.php">Inicio</a></li>
         <li class="has-submenu">
             <a href="#">Inventario</a>
             <ul class="submenu">
@@ -45,10 +45,15 @@ $rol_usuario = $_SESSION['usuario_rol'] ?? 'Consulta';
         <li><a href="#">Reportes</a></li>
         
         <?php if ($rol_usuario == 'Admin'): ?>
-            <li><a href="#">Mantenimiento</a></li>
+            <li class="has-submenu">
+            <a href="#">Mantenimiento</a>
+            <ul class="submenu">
+                <li><a href="/swibo/pages/gestion_usuarios.php">Gestion de Usuarios</a></li>
+            </ul>
+        </li>
         <?php endif; ?>
     </ul>
     <div class="nav-user">
         <span><?php echo htmlspecialchars($nombre_usuario); ?></span>
-        <a href="/swibo/pages/logout.php" class="btn-logout">Salir</a> </div>
+        <a href="logout.php" class="btn-logout">Salir</a> </div>
 </nav>
