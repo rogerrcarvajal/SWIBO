@@ -32,6 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar_categoria'])
     }
 }
 
+// Mensajes de éxito desde URL
+if (isset($_GET['mensaje'])) {
+    if ($_GET['mensaje'] == 'exito_eliminar') $mensaje = "✅ Categoría eliminada correctamente.";
+    if ($_GET['mensaje'] == 'exito_editar') $mensaje = "✅ Categoría actualizada correctamente.";
+}
+
 // --- OBTENER LA LISTA DE CATEGORÍAS EXISTENTES ---
 $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_producto ORDER BY nombre ASC")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -41,7 +47,7 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Categorías - SWIBO</title>
+    <title>SWIBO - Gestión de Categorías</title>
     <link rel="stylesheet" href="../public/css/style.css">
     <style>
         .main-content { padding: 20px 40px; }
@@ -61,6 +67,7 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
         .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         .data-table th, .data-table td { text-align: left; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.2); }
         .data-table th { background-color: rgba(0,0,0,0.2); }
+        .btn-secondary { background-color: #d10000; color: rgba(255, 255, 255, 0.712); padding: 11px 20px; text-decoration: none; border-radius: 5px; }
         .actions a { margin-right: 10px; text-decoration: none; color: #87cefa; font-weight: bold; }
         .actions a.delete { color: #ff8a8a; }
         .alert-message { padding: 10px; border-radius: 5px; margin-bottom: 15px; color: #fff; font-weight: bold; }
@@ -95,6 +102,9 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
                         <textarea id="descripcion" name="descripcion" rows="4"></textarea>
                     </div>
                     <button type="submit" name="registrar_categoria" class="btn-login">Registrar Categoría</button>
+
+                    <br><br>
+                    <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>
 
@@ -109,7 +119,10 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
                         <tr>
                             <td><?php echo htmlspecialchars($categoria['nombre']); ?></td>
                             <td><?php echo htmlspecialchars($categoria['descripcion']); ?></td>
-                            <td class="actions"><a href="#">Editar</a><a href="#" class="delete">Eliminar</a></td>
+                            <td class="actions">
+                                <a href="editar_categoria.php?id=<?php echo $categoria['id']; ?>">Editar</a>
+                                <a href="gestion_categorias.php?eliminar_id=<?php echo $categoria['id']; ?>" class="delete" onclick="return confirm('¿Está seguro de que desea eliminar esta categoría? Solo se puede eliminar si no tiene productos asociados.');">Eliminar</a>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

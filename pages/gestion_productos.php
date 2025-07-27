@@ -13,23 +13,38 @@ $selected_categoria_id = $_GET['categoria_id'] ?? null;
 $productos = [];
 $categoria_seleccionada = null;
 
-// --- LÓGICA PARA REGISTRAR UN NUEVO PRODUCTO ---
+// --- LÓGICA PARA REGISTRAR UN NUEVO PRODUCTO (ACTUALIZADA) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar_producto'])) {
-    // Recolectar datos del producto
     $categoria_id = $_POST['categoria_id'];
-    $codigo_profit = $_POST['codigo_profit'];
-    $descripcion = $_POST['descripcion'];
-    $aleacion = $_POST['aleacion'];
-    $libras_schedule = $_POST['libras_schedule'];
-    $ubicacion = $_POST['ubicacion'];
-    $stock = $_POST['stock'];
+    $codigo_profit = $_POST['codigo_profit'] ?? null;
+    $descripcion = $_POST['descripcion'] ?? '';
+    $aleacion = $_POST['aleacion'] ?? null;
+    $libras_schedule = $_POST['libras_schedule'] ?? null;
+    $ubicacion = $_POST['ubicacion'] ?? null;
+    $stock = $_POST['stock'] ?? 0;
+    // Nuevos campos
+    $colada = $_POST['colada'] ?? null;
+    $grado = $_POST['grado'] ?? null;
+    $espesor = $_POST['espesor'] ?? null;
+    $angulo = $_POST['angulo'] ?? null;
 
-    $sql = "INSERT INTO productos (categoria_id, codigo_profit, descripcion, aleacion, libras_schedule, ubicacion, stock) 
-            VALUES (:categoria_id, :codigo_profit, :descripcion, :aleacion, :libras_schedule, :ubicacion, :stock)";
+    $sql = "INSERT INTO productos 
+                (categoria_id, codigo_profit, descripcion, aleacion, libras_schedule, ubicacion, stock, colada, grado, espesor, angulo) 
+            VALUES 
+                (:cat_id, :c_profit, :desc, :al, :ls, :ubi, :stk, :col, :gra, :esp, :ang)";
     $stmt = $conn->prepare($sql);
     $stmt->execute([
-        ':categoria_id' => $categoria_id, ':codigo_profit' => $codigo_profit, ':descripcion' => $descripcion,
-        ':aleacion' => $aleacion, ':libras_schedule' => $libras_schedule, ':ubicacion' => $ubicacion, ':stock' => $stock
+        ':cat_id' => $categoria_id,
+        ':c_profit' => $codigo_profit,
+        ':desc' => $descripcion,
+        ':al' => $aleacion,
+        ':ls' => $libras_schedule,
+        ':ubi' => $ubicacion,
+        ':stk' => $stock,
+        ':col' => $colada,
+        ':gra' => $grado,
+        ':esp' => $espesor,
+        ':ang' => $angulo
     ]);
     
     // Redirigir para mostrar la lista actualizada y evitar reenvío del formulario
@@ -75,6 +90,7 @@ if (isset($_GET['success'])) {
         .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         .data-table th, .data-table td { text-align: left; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.2); }
         .data-table th { background-color: rgba(0,0,0,0.2); }
+        .btn-secondary { background-color: #d10000; color: rgba(255, 255, 255, 0.712); padding: 11px 20px; text-decoration: none; border-radius: 5px; }
         .actions a { margin-right: 10px; text-decoration: none; color: #87cefa; font-weight: bold; }
         .actions a.delete { color: #ff8a8a; }
         .selector-container { background-color: #00224480; border: 2px solid rgba(255,255,255,0.18); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
@@ -115,13 +131,21 @@ if (isset($_GET['success'])) {
                 
                 <form action="gestion_productos.php" method="POST">
                     <input type="hidden" name="categoria_id" value="<?php echo $selected_categoria_id; ?>">
-                    <div class="input-group"><label>Código Profit</label><input type="text" name="codigo_profit"></div>
                     <div class="input-group"><label>Descripción</label><input type="text" name="descripcion" required></div>
-                    <div class="input-group"><label>Aleación</label><input type="text" name="aleacion"></div>
-                    <div class="input-group"><label>Libras/Schedule</label><input type="text" name="libras_schedule"></div>
-                    <div class="input-group"><label>Ubicación</label><input type="text" name="ubicacion"></div>
+                    <div class="input-group"><label>Código Profit</label><input type="text" name="codigo_profit"></div>
                     <div class="input-group"><label>Stock Inicial</label><input type="number" name="stock" value="0" required></div>
+                    <div class="input-group"><label>Ubicación</label><input type="text" name="ubicacion"></div>
+                    <div class="input-group"><label>Aleación</label><input type="text" name="aleacion"></div>
+                    <div class="input-group"><label>Libras/Schedule</label><input type="text" name="libras_schedule"></div>   
+                    <div class="input-group"><label>Colada</label><input type="text" name="colada"></div>
+                    <div class="input-group"><label>Grado</label><input type="text" name="grado"></div>
+                    <div class="input-group"><label>Espesor</label><input type="text" name="espesor"></div>
+                    <div class="input-group"><label>Ángulo</label><input type="text" name="angulo"></div>
+
                     <button type="submit" name="registrar_producto" class="btn-login">Registrar Producto</button>
+                
+                    <br><br>
+                    <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>
 
