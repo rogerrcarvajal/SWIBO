@@ -13,6 +13,22 @@ $selected_categoria_id = $_GET['categoria_id'] ?? null;
 $productos = [];
 $categoria_seleccionada = null;
 
+// --- LÓGICA PARA ELIMINAR UN PRODUCTO ---
+if (isset($_GET['eliminar_id']) && $selected_categoria_id) {
+    $id_a_eliminar = $_GET['eliminar_id'];
+    try {
+        // La restricción de la BD evitará que se elimine si tiene movimientos.
+        $delete_stmt = $conn->prepare("DELETE FROM productos WHERE id = ?");
+        $delete_stmt->execute([$id_a_eliminar]);
+        header("Location: gestion_productos.php?categoria_id=" . $selected_categoria_id . "&success=2");
+        exit();
+    } catch (PDOException $e) {
+        // Capturar el error si el producto no se puede eliminar (ej. por tener movimientos)
+        header("Location: gestion_productos.php?categoria_id=" . $selected_categoria_id . "&error=1");
+        exit();
+    }
+}
+
 // --- LÓGICA PARA REGISTRAR UN NUEVO PRODUCTO (ACTUALIZADA) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar_producto'])) {
     $categoria_id = $_POST['categoria_id'];
@@ -68,10 +84,16 @@ if ($selected_categoria_id) {
     $productos = $stmt_prod->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Mensaje de éxito después de la redirección
+// Mensajes de éxito/error desde la URL
 if (isset($_GET['success'])) {
-    $mensaje = "✅ Producto registrado correctamente.";
+    if ($_GET['success'] == 1) $mensaje = "✅ Producto registrado correctamente.";
+    if ($_GET['success'] == 2) $mensaje = "✅ Producto eliminado correctamente.";
+    if ($_GET['success'] == 3) $mensaje = "✅ Producto actualizado correctamente.";
 }
+if (isset($_GET['error'])) {
+    if ($_GET['error'] == 1) $mensaje = "⚠️ No se puede eliminar el producto, es posible que tenga movimientos de inventario registrados.";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -160,7 +182,10 @@ if (isset($_GET['success'])) {
                             <td><?php echo htmlspecialchars($producto['descripcion']); ?></td>
                             <td><?php echo htmlspecialchars($producto['stock']); ?></td>
                             <td><?php echo htmlspecialchars($producto['ubicacion']); ?></td>
-                            <td class="actions"><a href="#">Editar</a><a href="#" class="delete">Eliminar</a></td>
+                            <td class="actions">
+                                <a href="editar_producto.php?id=<?php echo $producto['id']; ?>">Editar</a>
+                                <a href="gestion_productos.php?categoria_id=<?php echo $selected_categoria_id; ?>&eliminar_id=<?php echo $producto['id']; ?>" class="delete" onclick="return confirm('¿Está seguro de que desea eliminar este producto?');">Eliminar</a>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
