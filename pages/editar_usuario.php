@@ -145,7 +145,7 @@ if (!$usuario_a_editar) {
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn-login">Actualizar Usuario</button>
-                    <br><br>
+                    <br><br><br>
                     <a href="gestion_usuarios.php" class="btn-secondary">Volver</a>
                 </div>
             </form>

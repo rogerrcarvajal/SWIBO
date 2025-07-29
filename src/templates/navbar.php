@@ -37,12 +37,12 @@ $rol_usuario = $_SESSION['usuario_rol'] ?? 'Consulta';
         <li class="has-submenu">
             <a href="#">Control de Inventario</a>
             <ul class="submenu">
-                <li><a href="#">Entrada de Productos</a></li>
-                <li><a href="#">Salida de Productos</a></li>
-                <li><a href="#">Kardex de Producto</a></li>
+                <li><a href="/swibo/pages/entrada_producto.php">Entrada de Productos</a></li>
+                <li><a href="/swibo/pages/salida_producto.php">Salida de Productos</a></li>
+                <li><a href="/swibo/pages/kardex_producto.php">Kardex de Producto</a></li>
             </ul>
         </li>
-        <li><a href="#">Reportes</a></li>
+        <li><a href="/swibo/pages/reporte_general.php">Reportes</a></li>
         
         <?php if ($rol_usuario == 'Admin'): ?>
             <li class="has-submenu">

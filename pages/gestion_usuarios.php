@@ -155,7 +155,7 @@ $usuarios = $conn->query("SELECT id, nombre, username, email, rol FROM usuarios 
                     </div>
                     <button type="submit" name="registrar_usuario" class="btn-login">Registrar Usuario</button>
 
-                    <br><br>
+                    <br><br><br>
                     <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>

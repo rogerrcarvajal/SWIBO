@@ -103,7 +103,7 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
                     </div>
                     <button type="submit" name="registrar_categoria" class="btn-login">Registrar Categoría</button>
 
-                    <br><br>
+                    <br><br><br>
                     <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>

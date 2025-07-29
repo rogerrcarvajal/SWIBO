@@ -104,7 +104,7 @@ if (!$producto) {
                     
                     <div class="form-actions">
                         <button type="submit" class="btn-login">Actualizar Producto</button>
-                        <br><br>
+                        <br><br><br>
                         <a href="gestion_productos.php?categoria_id=<?php echo $producto['categoria_id']; ?>" class="btn-secondary">Volver</a>
                     </div>
                 </div>

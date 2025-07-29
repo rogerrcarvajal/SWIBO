@@ -94,7 +94,7 @@ if (!$categoria) {
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn-login">Actualizar Categoría</button>
-                    <br><br>
+                    <br><br><br>
                     <a href="gestion_categorias.php" class="btn-secondary">Volver</a>
                 </div>
             </form>

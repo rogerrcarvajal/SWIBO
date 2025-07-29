@@ -166,7 +166,7 @@ if (isset($_GET['error'])) {
 
                     <button type="submit" name="registrar_producto" class="btn-login">Registrar Producto</button>
                 
-                    <br><br>
+                    <br><br><br>
                     <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
             </div>
