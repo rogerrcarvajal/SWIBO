@@ -94,15 +94,13 @@ $categorias = $conn->query("SELECT id, nombre, descripcion FROM categorias_produ
 
                 <form action="gestion_categorias.php" method="POST">
                     <div class="input-group">
-                        <label for="nombre">Nombre de la Categoría</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la Categoría" required>
                     </div>
                     <div class="input-group">
-                        <label for="descripcion">Descripción (Opcional)</label>
-                        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                        <textarea id="descripcion" name="descripcion" placeholder="Descripción (Opcional)" rows="4"></textarea>
                     </div>
                     <button type="submit" name="registrar_categoria" class="btn-login">Registrar Categoría</button>
-
+  
                     <br><br><br>
                     <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>

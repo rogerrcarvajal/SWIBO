@@ -153,16 +153,16 @@ if (isset($_GET['error'])) {
                 
                 <form action="gestion_productos.php" method="POST">
                     <input type="hidden" name="categoria_id" value="<?php echo $selected_categoria_id; ?>">
-                    <div class="input-group"><label>Descripción</label><input type="text" name="descripcion" required></div>
-                    <div class="input-group"><label>Código Profit</label><input type="text" name="codigo_profit"></div>
+                    <div class="input-group"><input type="text" name="descripcion" placeholder="Descripción" required></div>
+                    <div class="input-group"><input type="text" name="codigo_profit" placeholder="Código Profit"></div>
                     <div class="input-group"><label>Stock Inicial</label><input type="number" name="stock" value="0" required></div>
-                    <div class="input-group"><label>Ubicación</label><input type="text" name="ubicacion"></div>
-                    <div class="input-group"><label>Aleación</label><input type="text" name="aleacion"></div>
-                    <div class="input-group"><label>Libras/Schedule</label><input type="text" name="libras_schedule"></div>   
-                    <div class="input-group"><label>Colada</label><input type="text" name="colada"></div>
-                    <div class="input-group"><label>Grado</label><input type="text" name="grado"></div>
-                    <div class="input-group"><label>Espesor</label><input type="text" name="espesor"></div>
-                    <div class="input-group"><label>Ángulo</label><input type="text" name="angulo"></div>
+                    <div class="input-group"><input type="text" name="ubicacion" placeholder="Ubicación"></div>
+                    <div class="input-group"><input type="text" name="aleacion" placeholder="Aleación"></div>
+                    <div class="input-group"><input type="text" name="libras_schedule" placeholder="Libras/Schedule"></div>   
+                    <div class="input-group"><input type="text" name="colada" placeholder="Colada"></div>
+                    <div class="input-group"><input type="text" name="grado" placeholder="Grado"></div>
+                    <div class="input-group"><input type="text" name="espesor" placeholder="Espesor"></div>
+                    <div class="input-group"><input type="text" name="angulo" placeholder="Ángulo"></div>
 
                     <button type="submit" name="registrar_producto" class="btn-login">Registrar Producto</button>
                 

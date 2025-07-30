@@ -71,9 +71,7 @@ if ($selected_producto_id) {
                                 <?php echo htmlspecialchars($producto['descripcion']) . " (Cód: " . htmlspecialchars($producto['codigo_profit']) . ")"; ?>
                             </option>
                         <?php endforeach; ?>
-                    </select>
-                    <br><br><br>
-                    <a href="dashboard.php" class="btn-secondary">Volver</a>         
+                    </select>        
                 </div>
             </form>
         </div>
@@ -82,10 +80,10 @@ if ($selected_producto_id) {
             <div class="results-container">
                 <h2>Historial de: <?php echo htmlspecialchars($producto_seleccionado['descripcion']); ?></h2>
                 <form action="generar_pdf_kardex.php" method="GET" target="_blank" style="margin-bottom: 20px;">
-                    <input type="hidden" name="producto_id" value="<?php echo $selected_producto_id; ?>">
-                    <button type="submit" class="btn-login">Generar PDF</button>
+                        <input type="hidden" name="producto_id" value="<?php echo $selected_producto_id; ?>">
+                    <button type="submit" class="btn-secondary">Generar PDF</button>
+                    <a href="dashboard.php" class="btn-secondary">Volver</a>
                 </form>
-                <h3>Stock Actual: <?php echo htmlspecialchars($producto_seleccionado['stock']); ?> unidades</h3>
                 <h3>Stock Actual: <?php echo htmlspecialchars($producto_seleccionado['stock']); ?> unidades</h3>
                 <table class="data-table">
                     <thead>

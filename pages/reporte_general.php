@@ -63,6 +63,10 @@ $reporte_data = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
         <header class="main-header">
             <h1>Reporte General de Inventario</h1>
             <p>Listado de productos con su último movimiento registrado. Fecha del reporte: <?php echo date('d/m/Y H:i'); ?></p>
+            <br><br>
+            <div style="margin-bottom: 20px;">
+                <a href="generar_pdf_reporte_general.php" target="_blank" class="btn-login" style="text-decoration: none;">Generar PDF</a>
+            </div>        
         </header>
 
         <div class="report-container">

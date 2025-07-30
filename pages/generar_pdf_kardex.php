@@ -91,5 +91,11 @@ foreach ($movimientos as $mov) {
     $pdf->Cell(40, 8, utf8_decode($mov['usuario_nombre']), 1, 1);
 }
 
-$pdf->Output();
+// --- LÍNEA FINAL MODIFICADA ---
+// Limpiar el nombre del producto para que sea un nombre de archivo válido
+$nombre_archivo = preg_replace('/[^a-zA-Z0-9-_\.]/', '_', $producto['descripcion']);
+$fecha_actual = date('Y-m-d');
+
+// Nombre del archivo de salida: Kardex_Descripcion-Del-Producto_Fecha.pdf
+$pdf->Output('D', 'Kardex_' . $nombre_archivo . '_' . $fecha_actual . '.pdf');
 ?>
