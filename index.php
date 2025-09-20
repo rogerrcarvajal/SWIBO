@@ -7,7 +7,7 @@ if (isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-require_once 'src/db.php';
+require_once 'db.php';
 $mensaje_error = "";
 
 // Procesar el formulario cuando se envía.

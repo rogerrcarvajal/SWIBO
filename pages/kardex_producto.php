@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 $selected_producto_id = $_GET['producto_id'] ?? null;
 $movimientos = [];

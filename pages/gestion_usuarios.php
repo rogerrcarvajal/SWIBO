@@ -1,7 +1,7 @@
 <?php
 // Incluir el protector de sesión para asegurar que el usuario ha iniciado sesión.
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 // --- BLOQUE DE CONTROL DE ACCESO ---
 // Solo los administradores pueden acceder a esta página.

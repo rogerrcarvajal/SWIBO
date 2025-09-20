@@ -1,7 +1,7 @@
 <?php
 // Incluir el protector de sesión y la conexión a la base de datos
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 // --- CONTROL DE ACCESO: SOLO ADMINS ---
 if ($_SESSION['usuario_rol'] !== 'Admin') {

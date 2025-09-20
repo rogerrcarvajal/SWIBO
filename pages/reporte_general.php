@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 date_default_timezone_set('America/Caracas');
 
 // Esta consulta compleja obtiene cada producto y lo une con su último movimiento registrado.

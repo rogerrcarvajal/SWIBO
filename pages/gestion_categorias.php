@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 // Solo los administradores pueden gestionar categorías.
 if ($_SESSION['usuario_rol'] !== 'Admin') {

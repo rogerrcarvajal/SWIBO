@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../src/protector.php';
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 // Establecer la zona horaria de Venezuela
 date_default_timezone_set('America/Caracas');

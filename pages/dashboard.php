@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../db.php';
 
 // --- NUEVA LÓGICA PARA EL DASHBOARD ---
 // 1. Contar total de productos
